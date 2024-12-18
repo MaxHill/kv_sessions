@@ -1,0 +1,9 @@
+*.beam
+*.ez
+**/*/build
+**/*/erl_crash.dump
+
+/example/*.beam
+/example/*.ez
+/example/build
+/example/erl_crash.dump
