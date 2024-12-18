@@ -6,6 +6,11 @@ watch_test:
     @just wait-for-db
     watchexec --restart --verbose --clear --wrap-process=session --stop-signal SIGTERM --exts gleam --watch ./ -- "gleam test"
 
+test:
+    @just db_run &>/dev/null&
+    @just wait-for-db
+    gleam test
+
 # DB
 db_run:
     docker run \

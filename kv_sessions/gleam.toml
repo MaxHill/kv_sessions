@@ -6,12 +6,7 @@ version = "0.1.0"
 #
 description = "Session management library for Wisp. Manage user sessions in a simple key-value store."
 licences = ["Apache-2.0"]
-repository = { 
-  type = "github", 
-  user = "MaxHill", 
-  repo = "kv_sessions", 
-  path="kv_sessions" 
-}
+repository = { type = "github", user = "MaxHill", repo = "kv_sessions", path="kv_sessions" }
 # links = [{ title = "Website", href = "" }]
 #
 # For a full reference of all the available options, you can have a look at

@@ -6,12 +6,7 @@ version = "0.0.2"
 #
 description = "Erlang Term Storage (ETS) driver for wisp_kv_sessions"
 licences = ["Apache-2.0"]
-repository = { 
-  type = "github", 
-  user = "MaxHill", 
-  repo = "kv_sessions", 
-  path="kv_sessions_ets_adapter" 
-}
+repository = { type = "github", user = "MaxHill", repo = "kv_sessions", path="kv_sessions_ets_adapter" }
 # links = [{ title = "Website", href = "" }]
 #
 # For a full reference of all the available options, you can have a look at
