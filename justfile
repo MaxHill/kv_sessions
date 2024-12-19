@@ -1,11 +1,14 @@
 #!/usr/bin/env just --justfile
 set dotenv-load := true
+mod pg 'kv_sessions_postgres_adapter/pg_adapter.just'
 
+test:
+    cd ./kv_sessions/ && gleam test
+    @just pg::test
 
 # Run a gleam command in each repo
 gleam +ARGS:
     cd ./kv_sessions/ && gleam {{ARGS}}
-    cd ./kv_sessions_ets_adapter/ && gleam {{ARGS}}
     cd ./kv_sessions_postgres_adapter/ && gleam {{ARGS}}
 
 # CI

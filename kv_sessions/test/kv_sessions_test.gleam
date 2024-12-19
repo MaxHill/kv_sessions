@@ -344,7 +344,7 @@ pub fn remove_cookie_from_request_test() {
 
   let modified_req =
     req
-    |> utils.remove_cookie("SECOND_COOKIE")
+    |> request.remove_cookie("SECOND_COOKIE")
 
   modified_req
   |> request.get_header("cookie")

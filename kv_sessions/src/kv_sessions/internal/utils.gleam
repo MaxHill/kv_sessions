@@ -1,36 +1,12 @@
 import birl
 import birl/duration
 import gleam/bit_array
-import gleam/bool
 import gleam/crypto
 import gleam/http/request
-import gleam/list
 import gleam/order
 import gleam/result
-import gleam/string
 import kv_sessions/session
 import wisp
-
-/// Remove a cookie from a request
-///
-/// Remove a cookie from the request. If no cookie is found return the request unchanged.
-pub fn remove_cookie(req: wisp.Request, name: String) {
-  case list.key_pop(req.headers, "cookie") {
-    Ok(#(cookies_string, headers)) -> {
-      let new_cookies_string =
-        string.split(cookies_string, ";")
-        |> list.map(string.trim)
-        |> list.filter(fn(str) { string.starts_with(str, name) |> bool.negate })
-        |> string.join("; ")
-
-      request.Request(
-        ..req,
-        headers: [#("cookie", new_cookies_string), ..headers],
-      )
-    }
-    Error(_) -> req
-  }
-}
 
 /// Inject a cookie into a request replacing if it already exists
 /// This will NOT be persisted between requests
@@ -46,7 +22,7 @@ pub fn inject_session_cookie(
     wisp.Signed -> wisp.sign_message(req, <<value:utf8>>, crypto.Sha512)
   }
   req
-  |> remove_cookie(cookie_name)
+  |> request.remove_cookie(cookie_name)
   |> request.set_cookie(cookie_name, value)
 }
 

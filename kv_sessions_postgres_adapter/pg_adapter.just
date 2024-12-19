@@ -1,14 +1,18 @@
 #!/usr/bin/env just --justfile
-set dotenv-load := true
+
+#*******************************************************
+# IMPORTANT: this is imported in ../justfile 
+# and is expected to be executed from there
+#*******************************************************
 
 watch_test:
-    @just db_run &>/dev/null&
-    @just wait-for-db
+    @just pg::db_run &>/dev/null&
+    @just pg::wait-for-db
     watchexec --restart --verbose --clear --wrap-process=session --stop-signal SIGTERM --exts gleam --watch ./ -- "gleam test"
 
 test:
-    @just db_run &>/dev/null&
-    @just wait-for-db
+    @just pg::db_run &>/dev/null&
+    @just pg::wait-for-db
     gleam test
 
 # DB
