@@ -1,5 +1,6 @@
 import envoy
 import gleam/int
+import gleam/io
 import gleam/option
 import gleam/result
 import kv_sessions/postgres_adapter
@@ -13,6 +14,8 @@ pub fn new_db(f: fn(pog.Connection) -> Nil) {
   let assert Ok(db_port) =
     envoy.get("DB_HOST_PORT") |> result.unwrap("5432") |> int.parse
   let db_name = envoy.get("DB_NAME") |> result.unwrap("postgres")
+
+  io.debug(#(db_host, db_password, db_user, db_name))
 
   let db =
     pog.default_config()

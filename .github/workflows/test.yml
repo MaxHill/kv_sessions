@@ -35,5 +35,6 @@ jobs:
           rebar3-version: "3"
           # elixir-version: "1.15.4"
       - run: just gleam deps download
-      - run: just gleam test
+      - run: cd kv_sessions && gleam test
+      - run: cd kv_sessions_postgres_adapter && gleam test
       - run: just gleam format --check src test
