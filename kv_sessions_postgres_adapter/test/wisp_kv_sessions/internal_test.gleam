@@ -2,7 +2,7 @@ import gleam/dict
 import gleam/dynamic
 import gleam/json
 import gleeunit/should
-import wisp_kv_sessions/internal
+import kv_sessions/internal
 
 pub fn encode_data_test() {
   let data =

@@ -9,7 +9,7 @@ import gleam/order
 import gleam/result
 import gleam/string
 import wisp
-import wisp_kv_sessions/session
+import kv_sessions/session
 
 /// Remove a cookie from a request
 ///

@@ -3,10 +3,10 @@ import gleam/json
 import gleam/list
 import gleam/option
 import gleam/result
+import kv_sessions/session
+import kv_sessions/session_config
 import pog
 import wisp
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
 
 pub fn new(db: pog.Connection) {
   session_config.SessionStore(
@@ -19,7 +19,7 @@ pub fn new(db: pog.Connection) {
 pub fn migrate_up(db: pog.Connection) {
   let sql =
     "
-    CREATE TABLE IF NOT EXISTS wisp_kv_sessions (
+    CREATE TABLE IF NOT EXISTS kv_sessions (
       session_id VARCHAR PRIMARY KEY,
       expires_at TIMESTAMP NOT NULL,
       data JSON
@@ -31,7 +31,7 @@ pub fn migrate_up(db: pog.Connection) {
 }
 
 pub fn migrate_down(db: pog.Connection) {
-  let sql = "DROP TABLE IF EXISTS wisp_kv_sessions"
+  let sql = "DROP TABLE IF EXISTS kv_sessions"
   pog.query(sql)
   |> pog.execute(db)
 }
@@ -40,7 +40,7 @@ fn get_session(db: pog.Connection) {
   fn(session_id: session.SessionId) {
     let sql =
       "
-      SELECT session_id, expires_at, data from wisp_kv_sessions
+      SELECT session_id, expires_at, data from kv_sessions
       WHERE session_id = $1;
       "
 
@@ -94,7 +94,7 @@ fn save_session(db: pog.Connection) {
   fn(new_session: session.Session) {
     let sql =
       "
-        INSERT INTO wisp_kv_sessions (session_id, expires_at, data)
+        INSERT INTO kv_sessions (session_id, expires_at, data)
         VALUES ($1, $2, $3)
         ON CONFLICT (session_id)
         DO UPDATE SET
@@ -145,7 +145,7 @@ fn delete_session(db: pog.Connection) {
   fn(session_id: session.SessionId) {
     let sql =
       "
-    DELETE FROM wisp_kv_sessions
+    DELETE FROM kv_sessions
     WHERE session_id = $1
     "
 

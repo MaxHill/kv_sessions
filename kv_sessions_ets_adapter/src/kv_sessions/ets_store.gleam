@@ -1,8 +1,8 @@
 import carpenter/table
 import gleam/list
 import gleam/option
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
+import kv_sessions/session
+import kv_sessions/session_config
 
 pub fn new(table_name) {
   let db = new_table(table_name)

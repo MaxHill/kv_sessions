@@ -32,11 +32,11 @@ packages = [
   { name = "telemetry", version = "1.3.0", build_tools = ["rebar3"], requirements = [], otp_app = "telemetry", source = "hex", outer_checksum = "7015FC8919DBE63764F4B4B87A95B7C0996BD539E0D499BE6EC9D7F3875B79E6" },
   { name = "thoas", version = "1.2.1", build_tools = ["rebar3"], requirements = [], otp_app = "thoas", source = "hex", outer_checksum = "E38697EDFFD6E91BD12CEA41B155115282630075C2A727E7A6B2947F5408B86A" },
   { name = "wisp", version = "1.2.0", build_tools = ["gleam"], requirements = ["directories", "exception", "gleam_crypto", "gleam_erlang", "gleam_http", "gleam_json", "gleam_stdlib", "logging", "marceau", "mist", "simplifile"], otp_app = "wisp", source = "hex", outer_checksum = "F71265D2F1DE11426535A2FA1DA3B11D2FFB783B116DF9496BC8C41983EBADB4" },
-  { name = "wisp_kv_sessions", version = "0.1.0", build_tools = ["gleam"], requirements = ["birl", "carpenter", "gleam_crypto", "gleam_erlang", "gleam_http", "gleam_json", "gleam_otp", "gleam_stdlib", "pog", "wisp"], otp_app = "wisp_kv_sessions", source = "hex", outer_checksum = "ED3F15302DC703957C69644F490EF32FEA0C346307503A213D98D9420B3781FD" },
+  { name = "kv_sessions", version = "0.1.0", build_tools = ["gleam"], requirements = ["birl", "carpenter", "gleam_crypto", "gleam_erlang", "gleam_http", "gleam_json", "gleam_otp", "gleam_stdlib", "pog", "wisp"], otp_app = "kv_sessions", source = "hex", outer_checksum = "ED3F15302DC703957C69644F490EF32FEA0C346307503A213D98D9420B3781FD" },
 ]
 
 [requirements]
 carpenter = { version = ">= 0.3.1 and < 1.0.0" }
 gleam_stdlib = { version = ">= 0.34.0 and < 2.0.0" }
 gleeunit = { version = ">= 1.0.0 and < 2.0.0" }
-wisp_kv_sessions = { version = ">= 0.1.0 and < 1.0.0" }
+kv_sessions = { version = ">= 0.1.0 and < 1.0.0" }

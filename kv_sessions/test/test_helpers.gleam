@@ -11,13 +11,13 @@ import gleam/list
 import gleam/option
 import gleam/result
 import gleeunit/should
+import kv_sessions
+import kv_sessions/actor_adapter
+import kv_sessions/postgres_adapter
+import kv_sessions/session
+import kv_sessions/session_config
 import pog
 import wisp
-import wisp_kv_sessions
-import wisp_kv_sessions/actor_adapter
-import wisp_kv_sessions/postgres_adapter
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
 
 pub fn new_db() {
   let db_host = os.get_env("DB_HOST") |> result.unwrap("127.0.0.1")
@@ -58,10 +58,10 @@ pub fn test_obj_from_json(json) {
   )
 }
 
-pub fn test_session_key(current_session: wisp_kv_sessions.CurrentSession) {
+pub fn test_session_key(current_session: kv_sessions.CurrentSession) {
   current_session
-  |> wisp_kv_sessions.key("test_key")
-  |> wisp_kv_sessions.with_codec(
+  |> kv_sessions.key("test_key")
+  |> kv_sessions.with_codec(
     decoder: test_obj_from_json,
     encoder: test_obj_to_json,
   )

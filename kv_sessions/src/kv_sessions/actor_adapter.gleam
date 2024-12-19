@@ -3,8 +3,8 @@ import gleam/erlang/process
 import gleam/option
 import gleam/otp/actor
 import gleam/result
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
+import kv_sessions/session
+import kv_sessions/session_config
 
 const timeout = 3000
 

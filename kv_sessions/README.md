@@ -1,11 +1,11 @@
-# wisp_kv_sessions
+# kv_sessions
 
-[![Package Version](https://img.shields.io/hexpm/v/wisp_kv_sessions)](https://hex.pm/packages/wisp_kv_sessions)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/wisp_kv_sessions/)
+[![Package Version](https://img.shields.io/hexpm/v/kv_sessions)](https://hex.pm/packages/kv_sessions)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/kv_sessions/)
 
 
 # Overview
-wisp_kv_sessions is a key-value session management library for [Wisp](https://gleam-wisp.github.io/wisp/), inspired by the Rust crate [tower sessions](https://docs.rs/tower-sessions/latest/tower_sessions/#). This library allows you to manage user sessions with ease, storing session data in a simple key-value store. 
+kv_sessions is a key-value session management library for [Wisp](https://gleam-wisp.github.io/wisp/), inspired by the Rust crate [tower sessions](https://docs.rs/tower-sessions/latest/tower_sessions/#). This library allows you to manage user sessions with ease, storing session data in a simple key-value store. 
 
 # Example Usage
 An minimal example usage is available in `./example/app.gleam`.
@@ -18,10 +18,10 @@ import gleam/string_builder
 import mist
 import wisp
 import wisp/wisp_mist
-import wisp_kv_sessions
-import wisp_kv_sessions/actor_adapter
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
+import kv_sessions
+import kv_sessions/actor_adapter
+import kv_sessions/session
+import kv_sessions/session_config
 
 pub fn main() {
   // Setup session_adapter
@@ -51,8 +51,8 @@ pub fn main() {
 
 pub fn handle_request(req: wisp.Request, session_config) -> wisp.Response {
   // Run the middleware and construct current_session
-  use req <- wisp_kv_sessions.middleware(req, session_config)
-  let current_session = wisp_kv_sessions.CurrentSession(req, session_config)
+  use req <- kv_sessions.middleware(req, session_config)
+  let current_session = kv_sessions.CurrentSession(req, session_config)
 
   case wisp.path_segments(req) {
     [] -> get_value_page(req, current_session)
@@ -63,13 +63,13 @@ pub fn handle_request(req: wisp.Request, session_config) -> wisp.Response {
 
 fn get_value_page(
   _req: wisp.Request,
-  session: wisp_kv_sessions.CurrentSession,
+  session: kv_sessions.CurrentSession,
 ) -> wisp.Response {
   // Read value to the session
   let assert Ok(key) =
     session
-    |> wisp_kv_sessions.key("test_key")
-    |> wisp_kv_sessions.get()
+    |> kv_sessions.key("test_key")
+    |> kv_sessions.get()
 
   case key {
     option.Some(k) -> {
@@ -86,13 +86,13 @@ fn get_value_page(
 
 fn set_value_page(
   _req: wisp.Request,
-  session: wisp_kv_sessions.CurrentSession,
+  session: kv_sessions.CurrentSession,
 ) -> wisp.Response {
   // Set value to the session
   let _ =
     session
-    |> wisp_kv_sessions.key("test_key")
-    |> wisp_kv_sessions.set("something")
+    |> kv_sessions.key("test_key")
+    |> kv_sessions.set("something")
 
   wisp.redirect("/")
 }
@@ -131,9 +131,9 @@ that implement the type SessionStore. You can use one of the prebuild storage
 adapters from down below, or implement a new one if the one you
 are looking for does not exist.
 
-For an example implementation, see `./src/wisp_kv_sessions/ets_adapter.gleam`.
+For an example implementation, see `./src/kv_sessions/ets_adapter.gleam`.
 
-## Included SessionStore adapters
+## SessionStore adapters
 
 ### actor_adapter
 The actor_adapter driver is suitable for development and testing purposes, 
@@ -144,7 +144,7 @@ which may become a bottleneck under heavy loads.
 *Usage Example:*
 
 ```gleam
-import wisp_kv_sessions/actor_adapter
+import kv_sessions/actor_adapter
 
 use session_store <- result.map(actor_adapter.new())
 
@@ -153,11 +153,15 @@ use session_store <- result.map(actor_adapter.new())
 See `./example/src/app.gleam` for full example
 
 ### postgres_adapter
-Also included is the postgres_adapter, that allows you to use postgres as 
+The postgres_adapter, that allows you to use postgres as 
 the storage implementation
 
+```sh
+gleam add kv_sessions_postgres_adapter
+```
+
 ```gleam
-import wisp_kv_sessions/postgres_adapter
+import kv_sessions/postgres_adapter
 
 let db = 
   pog.default_config()
@@ -179,8 +183,12 @@ The ets_adapter uses [Erlang Term Storage](https://www.erlang.org/doc/apps/stdli
 and [carpenter](https://hexdocs.pm/carpenter/) to store session information.
 *This will NOT be persistant after restarts*. But is a good option for caching.
 
+```sh
+gleam add kv_sessions_ets_adapter
+```
+
 ```gleam
-import wisp_kv_sessions/ets_adapter
+import kv_sessions/ets_adapter
 
 // Setup session_store
 use session_store <- result.map(ets_adapter.new(conn))

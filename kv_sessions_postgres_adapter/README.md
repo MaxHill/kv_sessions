@@ -1,13 +1,13 @@
-# wisp_kv_sessions_postgres_store
+# kv_sessions_postgres_store
 
-[![Package Version](https://img.shields.io/hexpm/v/wisp_kv_sessions_postgres_store)](https://hex.pm/packages/wisp_kv_sessions_postgres_store)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/wisp_kv_sessions_postgres_store/)
+[![Package Version](https://img.shields.io/hexpm/v/kv_sessions_postgres_store)](https://hex.pm/packages/kv_sessions_postgres_store)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/kv_sessions_postgres_store/)
 
 ```sh
-gleam add wisp_kv_sessions_postgres_store@1
+gleam add kv_sessions_postgres_store@1
 ```
 ```gleam
-import wisp_kv_sessions/postgres_store
+import kv_sessions/postgres_store
 
 pub fn main() {
   let db = pgo.connect(pgo.default_config())
@@ -30,8 +30,8 @@ pub fn main() {
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/wisp_kv_sessions_postgres_store>.
-And <https://hexdocs.pm/wisp_kv_sessions>
+Further documentation can be found at <https://hexdocs.pm/kv_sessions_postgres_store>.
+And <https://hexdocs.pm/kv_sessions>
 
 ## Development
 

@@ -1,10 +1,10 @@
-name = "wisp_kv_sessions_ets_store"
+name = "kv_sessions_ets_store"
 version = "0.0.2"
 
 # Fill out these fields if you intend to generate HTML documentation or publish
 # your project to the Hex package manager.
 #
-description = "Erlang Term Storage (ETS) driver for wisp_kv_sessions"
+description = "Erlang Term Storage (ETS) driver for kv_sessions"
 licences = ["Apache-2.0"]
 repository = { type = "github", user = "MaxHill", repo = "kv_sessions", path="kv_sessions_ets_adapter" }
 # links = [{ title = "Website", href = "" }]
@@ -15,7 +15,7 @@ repository = { type = "github", user = "MaxHill", repo = "kv_sessions", path="kv
 [dependencies]
 gleam_stdlib = ">= 0.34.0 and < 2.0.0"
 carpenter = ">= 0.3.1 and < 1.0.0"
-wisp_kv_sessions = ">= 0.1.0 and < 1.0.0"
+kv_sessions = ">= 0.1.0 and < 1.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"

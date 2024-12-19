@@ -5,10 +5,10 @@ import gleam/json
 import gleam/list
 import gleam/option
 import gleam/result
+import kv_sessions/internal/utils
+import kv_sessions/session
+import kv_sessions/session_config
 import wisp
-import wisp_kv_sessions/internal/utils
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
 
 pub type CurrentSession {
   CurrentSession(req: wisp.Request, config: session_config.Config)
@@ -107,7 +107,7 @@ pub fn key(current_session: CurrentSession, key: String) {
 
 pub fn with_codec(
   session_key: SessionKey(a),
-  decoder decode: Decoder(data),
+  decoder decode: dynamic.Decoder(data),
   encoder encode: fn(data) -> String,
 ) -> SessionKey(data) {
   SessionKey(

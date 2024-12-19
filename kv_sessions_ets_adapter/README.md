@@ -1,13 +1,13 @@
-# wisp_kv_sessions_ets_store
+# kv_sessions_ets_store
 
-[![Package Version](https://img.shields.io/hexpm/v/wisp_kv_sessions_ets_store)](https://hex.pm/packages/wisp_kv_sessions_ets_store)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/wisp_kv_sessions_ets_store/)
+[![Package Version](https://img.shields.io/hexpm/v/kv_sessions_ets_store)](https://hex.pm/packages/kv_sessions_ets_store)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/kv_sessions_ets_store/)
 
 ```sh
-gleam add wisp_kv_sessions_ets_store@1
+gleam add kv_sessions_ets_store@1
 ```
 ```gleam
-import wisp_kv_sessions/ets_store
+import kv_sessions/ets_store
 
 pub fn main() {
   // Setup session_store
@@ -25,8 +25,8 @@ pub fn main() {
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/wisp_kv_sessions_ets_store>.
-And <https://hexdocs.pm/wisp_kv_sessions>
+Further documentation can be found at <https://hexdocs.pm/kv_sessions_ets_store>.
+And <https://hexdocs.pm/kv_sessions>
 
 ## Development
 

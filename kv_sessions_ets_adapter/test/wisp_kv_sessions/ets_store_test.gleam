@@ -1,6 +1,6 @@
 import gleeunit/should
-import wisp_kv_sessions/ets_adapter
-import wisp_kv_sessions/session
+import kv_sessions/ets_adapter
+import kv_sessions/session
 
 pub fn set_get_session_test() {
   let session =

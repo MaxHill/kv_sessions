@@ -4,7 +4,7 @@ import gleam/io
 import gleam/option
 import gleam/result
 import pog
-import wisp_kv_sessions/postgres_adapter
+import kv_sessions/postgres_adapter
 
 pub fn new_db(f: fn(pog.Connection) -> Nil) {
   let db_host = os.get_env("DB_HOST") |> result.unwrap("127.0.0.1")

@@ -1,5 +1,5 @@
 import gleam/option
-import wisp_kv_sessions/session
+import kv_sessions/session
 
 // Config
 //---------------------

@@ -2,13 +2,13 @@ import gleam/erlang/process
 import gleam/option
 import gleam/result
 import gleam/string_builder
+import kv_sessions
+import kv_sessions/actor_adapter
+import kv_sessions/session
+import kv_sessions/session_config
 import mist
 import wisp
 import wisp/wisp_mist
-import wisp_kv_sessions
-import wisp_kv_sessions/actor_adapter
-import wisp_kv_sessions/session
-import wisp_kv_sessions/session_config
 
 pub fn main() {
   // Setup session_adapter
@@ -38,8 +38,8 @@ pub fn main() {
 
 pub fn handle_request(req: wisp.Request, session_config) -> wisp.Response {
   // Run the middleware and construct current_session
-  use req <- wisp_kv_sessions.middleware(req, session_config)
-  let current_session = wisp_kv_sessions.CurrentSession(req, session_config)
+  use req <- kv_sessions.middleware(req, session_config)
+  let current_session = kv_sessions.CurrentSession(req, session_config)
 
   case wisp.path_segments(req) {
     [] -> get_value_page(req, current_session)
@@ -50,13 +50,13 @@ pub fn handle_request(req: wisp.Request, session_config) -> wisp.Response {
 
 fn get_value_page(
   _req: wisp.Request,
-  session: wisp_kv_sessions.CurrentSession,
+  session: kv_sessions.CurrentSession,
 ) -> wisp.Response {
   // Read value to the session
   let assert Ok(key) =
     session
-    |> wisp_kv_sessions.key("test_key")
-    |> wisp_kv_sessions.get()
+    |> kv_sessions.key("test_key")
+    |> kv_sessions.get()
 
   case key {
     option.Some(k) -> {
@@ -73,13 +73,13 @@ fn get_value_page(
 
 fn set_value_page(
   _req: wisp.Request,
-  session: wisp_kv_sessions.CurrentSession,
+  session: kv_sessions.CurrentSession,
 ) -> wisp.Response {
   // Set value to the session
   let _ =
     session
-    |> wisp_kv_sessions.key("test_key")
-    |> wisp_kv_sessions.set("something")
+    |> kv_sessions.key("test_key")
+    |> kv_sessions.set("something")
 
   wisp.redirect("/")
 }
