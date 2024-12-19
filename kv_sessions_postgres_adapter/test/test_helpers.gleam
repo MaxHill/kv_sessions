@@ -1,4 +1,4 @@
-import gleam/erlang/os
+import envoy
 import gleam/int
 import gleam/option
 import gleam/result
@@ -6,13 +6,13 @@ import kv_sessions/postgres_adapter
 import pog
 
 pub fn new_db(f: fn(pog.Connection) -> Nil) {
-  let db_host = os.get_env("DB_HOST") |> result.unwrap("127.0.0.1")
+  let db_host = envoy.get("DB_HOST") |> result.unwrap("127.0.0.1")
   let db_password =
-    os.get_env("DB_PASSWORD") |> result.unwrap("mySuperSecretPassword!")
-  let db_user = os.get_env("DB_USER") |> result.unwrap("postgres")
+    envoy.get("DB_PASSWORD") |> result.unwrap("mySuperSecretPassword!")
+  let db_user = envoy.get("DB_USER") |> result.unwrap("postgres")
   let assert Ok(db_port) =
-    os.get_env("DB_HOST_PORT") |> result.unwrap("5432") |> int.parse
-  let db_name = os.get_env("DB_NAME") |> result.unwrap("postgres")
+    envoy.get("DB_HOST_PORT") |> result.unwrap("5432") |> int.parse
+  let db_name = envoy.get("DB_NAME") |> result.unwrap("postgres")
 
   let db =
     pog.default_config()
