@@ -1,7 +1,7 @@
 # kv_sessions_postgres_store
 
-[![Package Version](https://img.shields.io/hexpm/v/kv_sessions_postgres_store)](https://hex.pm/packages/kv_sessions_postgres_store)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/kv_sessions_postgres_store/)
+[![Package Version](https://img.shields.io/hexpm/v/kv_sessions_postgres_adapter)](https://hex.pm/packages/kv_sessions_postgres_adapter)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/kv_sessions_postgres_adapter/)
 
 ```sh
 gleam add kv_sessions_postgres_store@1

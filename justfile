@@ -13,7 +13,8 @@ gleam +ARGS:
 
 # CI
 ci_deps +PACKAGE:
-    cd {{PACKAGE}} && gleam test
+    cd {{PACKAGE}} && gleam deps download
+
 
 ci_test +PACKAGE:
     cd {{PACKAGE}} && gleam test
