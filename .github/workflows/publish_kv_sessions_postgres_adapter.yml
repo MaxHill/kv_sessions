@@ -1,9 +1,9 @@
-name: publish_kv_sessions
+name: publish_kv_sessions_postgres_adapter
 
 on:
   push:
     paths: 
-      - 'kv_sessions/gleam.toml'
+      - 'kv_sessions_postgres_adapter/gleam.toml'
 
 jobs:
   check_version:
@@ -20,7 +20,7 @@ jobs:
         - name: Check Version
           id: output_step
           run: |
-            IS_CHANGED=$(just ci_check_version kv_sessions)
+            IS_CHANGED=$(just ci_check_version kv_sessions_postgres_adapter)
             echo "Is changed: $IS_CHANGED"
             echo "is_changed=$IS_CHANGED" >> "$GITHUB_OUTPUT"
 
@@ -38,11 +38,11 @@ jobs:
           gleam-version: "1.4.1"
           rebar3-version: "3"
       - name: "Download dependencies"
-        run: just ci_deps kv_sessions
+        run: just ci_deps kv_sessions_postgres_adapter
       - name: "Run tests"
-        run: just ci_test kv_sessions
+        run: just ci_test kv_sessions_postgres_adapter
       - name: "Lint formatting"
-        run: just ci_format kv_sessions
+        run: just ci_format kv_sessions_postgres_adapter
 
   deploy: 
     needs: 
@@ -70,5 +70,6 @@ jobs:
           HEXPM_USER: "op://hex/Hex/username"
           HEXPM_PASS: "op://hex/Hex/password"
 
-      - name: Publish kv_sessions
-        run: just ci_publish kv_sessions
+      - name: Publish kv_sessions_postgres_adapter
+        run: just ci_publish kv_sessions_postgres_adapter
+
