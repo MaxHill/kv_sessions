@@ -1,7 +1,7 @@
 import gleeunit/should
-import test_helpers
 import kv_sessions/postgres_adapter
 import kv_sessions/session
+import test_helpers
 
 pub fn set_get_session_test() {
   use db <- test_helpers.new_db()

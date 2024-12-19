@@ -28,6 +28,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: check_version
     if: (needs.check_version.outputs.is_changed == 'true')
+    services:
+      postgres:
+        image: postgres # Docker Hub image
+        env:
+          POSTGRES_PASSWORD: mySuperSecretPassword!
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
     steps:
       - uses: actions/checkout@v4
       - name: Install just 

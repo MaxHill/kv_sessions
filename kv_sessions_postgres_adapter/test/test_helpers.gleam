@@ -1,10 +1,9 @@
 import gleam/erlang/os
 import gleam/int
-import gleam/io
 import gleam/option
 import gleam/result
-import pog
 import kv_sessions/postgres_adapter
+import pog
 
 pub fn new_db(f: fn(pog.Connection) -> Nil) {
   let db_host = os.get_env("DB_HOST") |> result.unwrap("127.0.0.1")
