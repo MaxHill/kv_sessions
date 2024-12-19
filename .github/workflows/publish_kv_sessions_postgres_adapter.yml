@@ -48,13 +48,13 @@ jobs:
         uses: extractions/setup-just@v2
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "27.0.2"
+          otp-version: "27.2.0"
           gleam-version: "1.4.1"
           rebar3-version: "3"
       - name: "Download dependencies"
         run: just ci_deps kv_sessions_postgres_adapter
       - name: "Run tests"
-        run: just ci_test kv_sessions_postgres_adapter
+        run: cd kv_sessions_postgres_adapter && gleam test
       - name: "Lint formatting"
         run: just ci_format kv_sessions_postgres_adapter
 
@@ -70,7 +70,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: "27.0.2"
+          otp-version: "27.2.0"
           gleam-version: "1.4.1"
           rebar3-version: "3"
       

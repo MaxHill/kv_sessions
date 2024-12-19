@@ -178,8 +178,7 @@ gleam add kv_sessions_postgres_adapter
 ```gleam
 import kv_sessions/postgres_adapter
 
-let db = 
-  pog.default_config()
+let db = pog.default_config()
   |> pog.connect()
 
 // Migrate

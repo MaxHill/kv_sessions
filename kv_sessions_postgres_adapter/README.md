@@ -10,7 +10,8 @@ gleam add kv_sessions_postgres_store@1
 import kv_sessions/postgres_store
 
 pub fn main() {
-  let db = pgo.connect(pgo.default_config())
+  let db = pog.default_config()
+  |> pog.connect()
   
   // Migrate
   use _ <- result.try(postgres_store.migrate_up(conn))
