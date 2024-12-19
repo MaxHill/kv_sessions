@@ -2,40 +2,29 @@ name: publish_kv_sessions
 
 on:
   push:
-    paths: 
-      - 'kv_sessions/gleam.toml'
+    # paths: 
+    #   - 'kv_sessions/gleam.toml'
 
 jobs:
   check_version:
       runs-on: ubuntu-latest
       outputs:
-        version_changed: ${{ steps.check_version.outputs.version_changed }}
+        is_changed: ${{ steps.check_version.outputs.is_changed }}
       steps:
+        - name: Install just 
+          uses: extractions/setup-just@v2
         - name: Checkout code
           uses: actions/checkout@v4
-
-        - name: Check if version changed
-          id: check_version
+        - name: Check Version
           run: |
-            # Extract current version
-            current_version=$(grep '^version = ' kv_sessions/gleam.toml | cut -d '"' -f2)
-            # Extract previous version from git history
-            previous_version=$(git show HEAD~1:kv_sessions/gleam.toml | grep '^version = ' | cut -d '"' -f2 || echo "not_found")
-
-            # Compare versions
-            if [ "$current_version" != "$previous_version" ]; then
-              echo "Version changed from $previous_version to $current_version"
-              echo "version_changed=true" >> $GITHUB_ENV
-            else
-              echo "version_changed=false" >> $GITHUB_ENV
-            fi
-          env:
-            GITHUB_ENV: ${{ steps.check_version.outputs.version_changed }}
+            IS_CHANGED=$(just ci_check_version kv_sessions)
+            echo "Is changed: $IS_CHANGED"
+            echo "::set-output name=is_changed::$IS_CHANGED"
 
   test:
     runs-on: ubuntu-latest
     needs: check_version
-    if: needs.check_version.outputs.version_changed == 'true'
+    if: needs.check_version.outputs.is_changed == 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
@@ -43,23 +32,22 @@ jobs:
           otp-version: "26.0.2"
           gleam-version: "1.4.1"
           rebar3-version: "3"
-          # elixir-version: "1.15.4"
       - name: "Download dependencies"
-        run: gleam deps download
+        run: just ci_deps kv_sessions
       - name: "Run tests"
-        working-directory: ./kv_sessions
-        run: gleam test
+        run: just ci_test kv_sessions
       - name: "Lint formatting"
-        working-directory: ./kv_sessions
-        run: gleam format --check src test
+        run: just ci_format kv_sessions
 
   deploy: 
     needs: 
       - check_version
       - test
-    if: needs.check_version.outputs.version_changed == 'true'
+    if: needs.check_version.outputs.is_changed == 'true'
     runs-on: ubuntu-latest
     steps:
+      - name: Install just 
+        uses: extractions/setup-just@v2
       - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
         with:
@@ -78,5 +66,4 @@ jobs:
           HEXPM_PASS: "op://hex/Hex/password"
 
       - name: Publish kv_sessions
-        run: gleam publish --yes
-        working-directory: ./kv_sessions
+        run: just ci_publish kv_sessions
