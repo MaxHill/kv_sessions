@@ -1,7 +1,7 @@
 import gleam/erlang/process
 import gleam/option
 import gleam/result
-import gleam/string_builder
+import gleam/string_tree
 import kv_sessions
 import kv_sessions/actor_adapter
 import kv_sessions/session
@@ -60,11 +60,11 @@ fn get_value_page(
 
   case key {
     option.Some(k) -> {
-      wisp.html_response(string_builder.from_string(k), 200)
+      wisp.html_response(string_tree.from_string(k), 200)
     }
     option.None -> {
       wisp.html_response(
-        string_builder.from_string("No value set. Go to /set to set a value"),
+        string_tree.from_string("No value set. Go to /set to set a value"),
         200,
       )
     }

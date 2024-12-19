@@ -152,6 +152,21 @@ use session_store <- result.map(actor_adapter.new())
 ```
 See `./example/src/app.gleam` for full example
 
+### ets_adapter
+
+The ets_adapter is also included by default and uses [Erlang Term Storage](https://www.erlang.org/doc/apps/stdlib/ets.html) 
+and [carpenter](https://hexdocs.pm/carpenter/) to store session information.
+*This will NOT be persistant after restarts*. But is a good option for caching.
+
+```gleam
+import kv_sessions/ets_adapter
+
+// Setup session_store
+use session_store <- result.map(ets_adapter.new(conn))
+
+//...
+```
+
 ### postgres_adapter
 The postgres_adapter, that allows you to use postgres as 
 the storage implementation
@@ -177,21 +192,3 @@ use session_store <- result.map(postgres_adapter.new(conn))
 ```
 
 
-### ets_adapter
-
-The ets_adapter uses [Erlang Term Storage](https://www.erlang.org/doc/apps/stdlib/ets.html) 
-and [carpenter](https://hexdocs.pm/carpenter/) to store session information.
-*This will NOT be persistant after restarts*. But is a good option for caching.
-
-```sh
-gleam add kv_sessions_ets_adapter
-```
-
-```gleam
-import kv_sessions/ets_adapter
-
-// Setup session_store
-use session_store <- result.map(ets_adapter.new(conn))
-
-//...
-```

@@ -30,7 +30,7 @@ pub fn main() {
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/kv_sessions_postgres_store>.
+Further documentation can be found at <https://hexdocs.pm/kv_sessions_postgres_adapter>.
 And <https://hexdocs.pm/kv_sessions>
 
 ## Development
