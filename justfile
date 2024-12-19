@@ -27,7 +27,7 @@ ci_check_version +PACKAGE:
     @if git diff HEAD~1 HEAD -- {{PACKAGE}}/gleam.toml | grep '^+version' > /dev/null; then \
         from_version=$(git show HEAD~1:{{PACKAGE}}/gleam.toml | grep '^version' | cut -d '"' -f2); \
         to_version=$(grep '^version' {{PACKAGE}}/gleam.toml | cut -d '"' -f2); \
-        echo "true"; \
+        echo true; \
     else \
-        echo "false";\
+        echo false;\
     fi

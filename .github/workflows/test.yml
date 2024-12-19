@@ -26,7 +26,8 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - name: Install just 
+        uses: extractions/setup-just@v2
       - uses: erlef/setup-beam@v1
         with:
           otp-version: "26.0.2"

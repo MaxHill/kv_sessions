@@ -8,8 +8,8 @@ import gleam/list
 import gleam/order
 import gleam/result
 import gleam/string
-import wisp
 import kv_sessions/session
+import wisp
 
 /// Remove a cookie from a request
 ///
