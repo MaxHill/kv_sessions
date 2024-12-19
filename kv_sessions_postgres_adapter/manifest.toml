@@ -19,6 +19,7 @@ packages = [
   { name = "glisten", version = "5.0.0", build_tools = ["gleam"], requirements = ["gleam_erlang", "gleam_otp", "gleam_stdlib", "logging", "telemetry"], otp_app = "glisten", source = "hex", outer_checksum = "48EF7F6D1DCA877C2F49AF35CC33946C7129EEB05A114758A2CC569C708BFAF8" },
   { name = "gramps", version = "2.0.3", build_tools = ["gleam"], requirements = ["gleam_crypto", "gleam_erlang", "gleam_http", "gleam_stdlib"], otp_app = "gramps", source = "hex", outer_checksum = "3CCAA6E081225180D95C79679D383BBF51C8D1FDC1B84DA1DA444F628C373793" },
   { name = "hpack_erl", version = "0.3.0", build_tools = ["rebar3"], requirements = [], otp_app = "hpack", source = "hex", outer_checksum = "D6137D7079169D8C485C6962DFE261AF5B9EF60FBC557344511C1E65E3D95FB0" },
+  { name = "kv_sessions", version = "0.0.2", build_tools = ["gleam"], requirements = ["birl", "carpenter", "gleam_crypto", "gleam_erlang", "gleam_http", "gleam_json", "gleam_otp", "gleam_stdlib", "pog", "wisp"], otp_app = "kv_sessions", source = "hex", outer_checksum = "856880BF150AFD578F5DCCA3991E2EE9B0C3250F1871706C7C13C3EE98862F46" },
   { name = "logging", version = "1.3.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], otp_app = "logging", source = "hex", outer_checksum = "1098FBF10B54B44C2C7FDF0B01C1253CAFACDACABEFB4B0D027803246753E06D" },
   { name = "marceau", version = "1.2.0", build_tools = ["gleam"], requirements = [], otp_app = "marceau", source = "hex", outer_checksum = "5188D643C181EE350D8A20A3BDBD63AF7B6C505DE333CFBE05EF642ADD88A59B" },
   { name = "mist", version = "2.0.0", build_tools = ["gleam"], requirements = ["birl", "gleam_erlang", "gleam_http", "gleam_otp", "gleam_stdlib", "glisten", "gramps", "hpack_erl", "logging"], otp_app = "mist", source = "hex", outer_checksum = "981F12FC8BA0656B40099EC876D6F2BEE7B95593610F342E9AB0DC4E663A932F" },
@@ -32,7 +33,6 @@ packages = [
   { name = "telemetry", version = "1.3.0", build_tools = ["rebar3"], requirements = [], otp_app = "telemetry", source = "hex", outer_checksum = "7015FC8919DBE63764F4B4B87A95B7C0996BD539E0D499BE6EC9D7F3875B79E6" },
   { name = "thoas", version = "1.2.1", build_tools = ["rebar3"], requirements = [], otp_app = "thoas", source = "hex", outer_checksum = "E38697EDFFD6E91BD12CEA41B155115282630075C2A727E7A6B2947F5408B86A" },
   { name = "wisp", version = "1.1.0", build_tools = ["gleam"], requirements = ["directories", "exception", "gleam_crypto", "gleam_erlang", "gleam_http", "gleam_json", "gleam_stdlib", "logging", "marceau", "mist", "simplifile"], otp_app = "wisp", source = "hex", outer_checksum = "5B25E37E08A94039668D2ACF7B2D2A665BEAF4B48EFA8613010B4E3164137664" },
-  { name = "kv_sessions", version = "0.1.0", build_tools = ["gleam"], requirements = ["birl", "carpenter", "gleam_crypto", "gleam_erlang", "gleam_http", "gleam_json", "gleam_otp", "gleam_stdlib", "pog", "wisp"], otp_app = "kv_sessions", source = "hex", outer_checksum = "ED3F15302DC703957C69644F490EF32FEA0C346307503A213D98D9420B3781FD" },
 ]
 
 [requirements]
@@ -40,6 +40,6 @@ birl = { version = ">= 1.7.1 and < 2.0.0" }
 gleam_json = { version = ">= 1.0.1 and < 2.0.0" }
 gleam_stdlib = { version = ">= 0.34.0 and < 2.0.0" }
 gleeunit = { version = ">= 1.0.0 and < 2.0.0" }
+kv_sessions = { version = ">= 0.0.2 and < 1.0.0" }
 pog = { version = ">= 1.0.0 and < 2.0.0" }
 wisp = { version = ">= 1.1.0 and < 2.0.0" }
-kv_sessions = { version = ">= 0.1.0 and < 1.0.0" }

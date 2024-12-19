@@ -1,5 +1,5 @@
 name = "kv_sessions_postgres_store"
-version = "0.1.0"
+version = "0.0.1"
 
 # Fill out these fields if you intend to generate HTML documentation or publish
 # your project to the Hex package manager.
@@ -14,12 +14,11 @@ repository = { type = "github", user = "MaxHill", repo = "kv_sessions", path="kv
 
 [dependencies]
 gleam_stdlib = ">= 0.34.0 and < 2.0.0"
-# kv_sessions = {path= "../kv_sessions/"}
 birl = ">= 1.7.1 and < 2.0.0"
 gleam_json = ">= 1.0.1 and < 2.0.0"
 wisp = ">= 1.1.0 and < 2.0.0"
 pog = ">= 1.0.0 and < 2.0.0"
-kv_sessions = ">= 0.1.0 and < 1.0.0"
+kv_sessions = ">= 0.0.2 and < 1.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"

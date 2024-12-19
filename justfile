@@ -7,8 +7,6 @@ gleam +ARGS:
     cd ./kv_sessions/ && gleam {{ARGS}}
     cd ./kv_sessions_ets_adapter/ && gleam {{ARGS}}
     cd ./kv_sessions_postgres_adapter/ && gleam {{ARGS}}
-    
-
 
 # CI
 ci_deps +PACKAGE:
