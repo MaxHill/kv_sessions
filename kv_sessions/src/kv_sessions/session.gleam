@@ -43,7 +43,7 @@ pub fn id_from_string(id: String) {
 
 // Session 
 //---------------------
-type Key =
+pub type Key =
   String
 
 type JsonString =
